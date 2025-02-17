@@ -29,7 +29,7 @@
 
               <form
                 class="mt-8"
-                data-th-action="@{'/user/contacts/add'}"
+                data-th-action="@{'/user/contacts/update/'+${contactId}}"
                 data-th-object="${contactForm}"
                 method="post"
                 enctype="multipart/form-data"
@@ -209,8 +209,8 @@
                   ></p>
 
                   <img
+                    data-th-src="*{picture}"
                     class="max-h-52 mx-auto rounded-lg shadow m-3"
-                    src=""
                     id="upload_image_preview"
                     alt=""
                   />
@@ -237,7 +237,7 @@
                     type="submit"
                     class="px-3 py-2 dark:bg-blue-600 hover:dark:bg-blue-700 rounded bg-black text-white"
                   >
-                    Add Contact
+                    Update Contact
                   </button>
                   <button
                     type="reset"
