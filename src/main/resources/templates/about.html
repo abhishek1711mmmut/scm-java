@@ -1,15 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<html
+  lang="en"
+  th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}"
+>
   <head>
     <title>About Page</title>
   </head>
   <body>
     <div id="content">
-        <h1>Welcome to about page</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat dolores, numquam similique cum molestias molestiae, illum aliquam dolorem inventore minus deleniti! Nihil, quos exercitationem! Itaque cumque vel temporibus est magni.</p>
+      <div
+        class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300"
+      >
+        <div class="container mx-auto p-6">
+          <div
+            class="text-center text-4xl font-bold bg-blue-600 text-white p-6 rounded-lg shadow-md"
+          >
+            About Us
+          </div>
+
+          <div class="mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">What is SCM?</h2>
+            <p class="mt-2 dark:text-gray-300 italic">
+              Smart Contact Management (SCM) is an intuitive web application
+              designed to help users manage their contacts efficiently. Whether
+              you need to add, edit, or delete contacts, SCM provides a seamless
+              experience with an easy-to-use interface.
+            </p>
+          </div>
+
+          <div class="mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Key Features</h2>
+            <ul
+              class="mt-2 list-disc list-inside dark:text-gray-300 font-normal text-gray-700 italic"
+            >
+              <li>Secure user authentication and registration</li>
+              <li>Add, edit, and delete contacts with ease</li>
+              <li>Beautiful user interface with light and dark modes</li>
+              <li>Responsive and mobile-friendly design</li>
+            </ul>
+          </div>
+
+          <div class="mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold">Our Mission</h2>
+            <p class="mt-2 dark:text-gray-300 italic">
+              Our goal is to simplify contact management for individuals and
+              businesses, ensuring data is easily accessible and well-organized.
+              SCM is built with security, user-friendliness, and efficiency in
+              mind.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
     <script>
-        console.log("about page");
+      console.log("about page");
     </script>
   </body>
 </html>

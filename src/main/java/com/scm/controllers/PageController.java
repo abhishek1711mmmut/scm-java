@@ -9,23 +9,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.scm.entities.ContactUs;
 import com.scm.entities.User;
+import com.scm.forms.ContactUsForm;
 import com.scm.forms.UserForm;
 import com.scm.helpers.Message;
 import com.scm.helpers.MessageType;
+import com.scm.services.ContactUsService;
 import com.scm.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PageController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ContactUsService contactUsService;
 
     @Value("${user.profile-pic.default}")
     private String defaultProfilePic;
@@ -53,9 +58,37 @@ public class PageController {
         return "services";
     }
 
-    @GetMapping("/contact")
-    public String contact() {
+    @GetMapping("/contact-us")
+    public String contact(Model model) {
+        ContactUsForm contactUsForm = new ContactUsForm();
+        model.addAttribute("contactUsForm", contactUsForm);
         return new String("contact");
+    }
+
+    @RequestMapping(value = "/contact-us", method = RequestMethod.POST)
+    public String processContact(@Valid @ModelAttribute ContactUsForm contactUsForm, BindingResult rBindingResult,
+            HttpSession session) {
+        System.out.println("processing contact");
+        // fetch form data
+        System.out.println(contactUsForm);
+
+        // validate data
+        if (rBindingResult.hasErrors()) {
+            return "contact";
+        }
+
+        // save to database
+        ContactUs contactUs = new ContactUs();
+        contactUs.setName(contactUsForm.getName());
+        contactUs.setEmail(contactUsForm.getEmail());
+        contactUs.setMessage(contactUsForm.getMessage());
+
+        contactUsService.saveContactUsData(contactUs);
+
+        Message message = Message.builder().content("Message sent").type(MessageType.green).build();
+        session.setAttribute("message", message);
+
+        return "redirect:/contact-us";
     }
 
     @GetMapping("/login")

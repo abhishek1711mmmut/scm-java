@@ -100,4 +100,9 @@ public class ContactServiceImpl implements ContactService {
         return contactRepo.findByUserAndPhoneNumberContaining(user, phoneNumberKeyword, pageable);
     }
 
+    @Override
+    public List<Contact> getByEmail(String email) {
+        return contactRepo.findByEmail(email);
+    }
+
 }

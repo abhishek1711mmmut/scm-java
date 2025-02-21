@@ -34,4 +34,6 @@ public interface ContactService {
     List<Contact> getByUserID(String userId);
 
     Page<Contact> getByUser(User user, int page, int size, String sortField, String sortDirection);
+
+    List<Contact> getByEmail(String email);
 }

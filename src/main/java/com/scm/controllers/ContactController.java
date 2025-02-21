@@ -112,6 +112,7 @@ public class ContactController {
             @RequestParam(value = "size", defaultValue = AppConstants.PAGE_SIZE + "") int size,
             @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
             @RequestParam(value = "direction", defaultValue = "asc") String direction) {
+
         String username = Helper.getEmailOfLoggedInUser(authentication);
         User user = userService.getUserByEmail(username);
         Page<Contact> pageContacts = contactService.getByUser(user, page, size, sortBy, direction);
