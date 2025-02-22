@@ -1,7 +1,7 @@
 console.log("contacts.js");
 
 // base url
-const baseUrl = "http://localhost:8081";
+// const baseUrl = "http://localhost:8081";
 
 // set the modal menu element
 const viewContactModal = document.getElementById("view_contact_modal");
@@ -43,7 +43,7 @@ function closeContactModal() {
 async function loadContactData(id) {
   console.log(id);
   try {
-    const data = await (await fetch(`${baseUrl}/api/contact/${id}`)).json();
+    const data = await (await fetch(`/api/contact/${id}`)).json();
     console.log(data);
     document.querySelector("#contact_name").innerHTML = data.name;
     document.querySelector("#contact_email").innerHTML = data.email;
