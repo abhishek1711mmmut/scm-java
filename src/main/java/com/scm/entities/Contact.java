@@ -1,5 +1,6 @@
 package com.scm.entities;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +38,15 @@ public class Contact {
     private String websiteLink;
     private String linkedInLink;
     private String cloudinaryImagePublicId;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    // Automatically set createdAt when saving a new contact
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 
     @ManyToOne
     @JsonIgnore

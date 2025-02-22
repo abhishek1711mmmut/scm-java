@@ -29,4 +29,8 @@ public interface ContactRepo extends JpaRepository<Contact, String> {
     Page<Contact> findByUserAndEmailContaining(User user, String emailKeyword, Pageable pageable);
 
     Page<Contact> findByUserAndPhoneNumberContaining(User user, String phoneKeyword, Pageable pageable);
+
+    // Fetch the last 5 added contacts
+    @Query("SELECT c FROM Contact c WHERE c.user.id=:userId ORDER BY c.createdAt DESC LIMIT 3")
+    List<Contact> findRecentContacts(@Param("userId") String userId);
 }

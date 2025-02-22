@@ -88,38 +88,13 @@ public class OAuthAuthenticationSuccessHandler implements AuthenticationSuccessH
             logger.info("OAuthAuthenticationSuccesshandler : Unknown provider");
         }
 
-        // DefaultOAuth2User user = (DefaultOAuth2User) authentication.getPrincipal();
-        // logger.info(user.getName());
-        // user.getAttributes().forEach((key, value) -> {
-        // logger.info("{} => {}", key, value);
-        // });
-        // logger.info(user.getAuthorities().toString());
-
-        // save data to database
-        // String email = user.getAttribute("email").toString();
-        // String name = user.getAttribute("name").toString();
-        // String picture = user.getAttribute("picture").toString();
-
-        // User user1 = new User();
-        // user1.setEmail(email);
-        // user1.setName(name);
-        // user1.setProfilePic(picture);
-        // user1.setPassword("password");
-        // user1.setUserId(UUID.randomUUID().toString());
-        // user1.setProvider(Providers.GOOGLE);
-        // user1.setEnabled(true);
-        // user1.setEmailVerified(true);
-        // user1.setProviderUserID(user.getName());
-        // user1.setRoleList(List.of(AppConstants.ROLE_USER));
-        // user1.setAbout("This account is created using Google.");
-
         User user2 = userRepo.findByEmail(user.getEmail()).orElse(null);
         if (user2 == null) {
             userRepo.save(user);
             logger.info("User saved");
         }
 
-        new DefaultRedirectStrategy().sendRedirect(request, response, "/user/profile");
+        new DefaultRedirectStrategy().sendRedirect(request, response, "/user/dashboard");
     }
 
 }

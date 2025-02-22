@@ -101,8 +101,8 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> getByEmail(String email) {
-        return contactRepo.findByEmail(email);
+    public List<Contact> findRecentContacts(String userId) {
+        return contactRepo.findRecentContacts(userId);
     }
 
 }
