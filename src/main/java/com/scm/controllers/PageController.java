@@ -145,4 +145,10 @@ public class PageController {
         return "redirect:/register";
     }
 
+    // error handler page
+    // @RequestMapping("/error")
+    // public String errorPage() {
+    //     return "error_page.html";
+    // }
+
 }
